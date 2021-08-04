@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import include
+from django.conf.urls import include #=> 교재 표기 x
 
 urlpatterns = [
     path('blog/', include('blog.urls')),
     # 교재 표기 : path('blog', include('blog.urls')),
     path('admin/', admin.site.urls),
+    path('', include('single_pages.urls'))
 ]
