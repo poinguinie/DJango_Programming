@@ -38,11 +38,15 @@ class TestView(TestCase):
         self.post_003.tags.add(self.tag_python_kor)
         self.post_003.tags.add(self.tag_python)
 
-    def test_category_page(self):
-        response = self.client.get(self.category_programming.get_absolute_url())
+    def connectSoup(self, url):
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-
         soup = BeautifulSoup(response.content, 'html.parser')
+        return soup
+
+    def test_category_page(self):
+        soup = self.connectSoup(self.category_programming.get_absolute_url())
+
         self.navbar_test(soup)
         self.category_card_test(soup)
 
@@ -55,9 +59,7 @@ class TestView(TestCase):
         self.assertNotIn(self.post_003.title, main_area.text)
 
     def test_tag_page(self):
-        response = self.client.get(self.tag_hello.get_absolute_url())
-        self.assertEqual(response.status_code, 200)
-        soup = BeautifulSoup(response.content, 'html.parser')
+        soup = self.connectSoup(self.tag_hello.get_absolute_url())
 
         self.navbar_test(soup)
         self.category_card_test(soup)
@@ -69,6 +71,38 @@ class TestView(TestCase):
         self.assertIn(self.post_001.title, main_area.text)
         self.assertNotIn(self.post_002.title, main_area.text)
         self.assertNotIn(self.post_003.title, main_area.text)
+
+    def test_create_post(self):
+        # 로그인하지 않으면 status code가 200이면 안 된다.
+        response = self.client.get('/blog/create_post/')
+        self.assertNotEqual(response.status_code, 200)
+
+        # 로그인을 한다.
+        self.client.login(username='jack', password='jack1355!')
+
+        soup = self.connectSoup('/blog/create_post/')
+
+        # response = self.client.get('/blog/create_post/')
+        # self.assertEqual(response.status_code, 200)
+        # soup = BeautifulSoup(response.content, 'html.parser')
+
+        self.assertEqual('Create Post - Blog', soup.title.text)
+        main_area = soup.find('div', id='main-area')
+        self.assertIn('Create New Post', main_area.text)
+
+        self.client.post(
+            '/blog/create_post/',
+            {
+                'title': 'Post Form 만들기',
+                'content': "Post Form 페이지를 만듭시다",
+            }
+        )
+
+        last_post = Post.objects.last()
+        self.assertEqual(last_post.title, "Post Form 만들기")
+        self.assertEqual(last_post.author.username, 'jack')
+
+
 
     def navbar_test(self, soup):
         navbar = soup.nav
@@ -102,7 +136,7 @@ class TestView(TestCase):
 
         response = self.client.get('/blog/')
         self.assertEqual(response.status_code, 200)
-        soup = BeautifulSoup(response.content, 'html.parser')
+        soup = self.connectSoup('/blog/')
 
         self.navbar_test(soup)
         self.category_card_test(soup)
@@ -157,9 +191,7 @@ class TestView(TestCase):
 
         # 2. 첫번째 포스트의 상세 페이지 테스트
         # 2.1. 첫번째 포스트의 url로 접근하면 정상적으로 작동한다. (status code : 200)
-        response = self.client.get(self.post_001.get_absolute_url())
-        self.assertEqual(response.status_code, 200)
-        soup = BeautifulSoup(response.content, 'html.parser')
+        soup = self.connectSoup(self.post_001.get_absolute_url())
 
         # 2.2. 포스트 목록 페이지와 똑같은 내비게이션 바가 있다.
         self.navbar_test(soup)
