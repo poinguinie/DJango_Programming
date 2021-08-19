@@ -1,18 +1,142 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>개발자 Poinguinie 입니다</title>
-</head>
-<body>
-<nav>
-    <a href="/blog/">Blog</a>
-    <a href="/about_me/">About Me</a>
-</nav>
+    <head>
+        <meta charset="UTF-8">
+        <title>About Poinguinie</title>
+        <link href="{% static 'blog/bootstrap/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+        <link href="{% static 'single_pages/css/about_me.css' %}" rel="stylesheet" media="screen">
+        <script src="https://kit.fontawesome.com/d681c30647.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        {% include 'blog/navbar.html' %}
 
-<h1>안녕하세요 Poinguinie 입니다.</h1>
-<h2>이력</h2>
-<h2>Portfolio</h2>
-<h3>아직 공사중입니다.</h3>
-</body>
+        <section>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-8 content">
+                        <h1>안녕하세요 Poinguinie 입니다.</h1><hr/>
+                        <p class="lead">
+                            컴퓨터 공학과 재학중입니다.
+                        </p>
+                        <p class="lead">
+                            원하는 진로 방향은 <b>게임 개발, 웹&앱 개발</b>입니다.
+                        </p>
+                        <ul>
+                            <li><h3>WORK EXPERIENCE</h3></li>
+                            <ul>
+                                <li>...</li>
+                                <li>...</li>
+                            </ul>
+                            <li><h3>EDUCATION</h3></li>
+                            <ul>
+                                <li>..고등학교 졸업</li>
+                                <li>..대학교 컴퓨터 공학과 재학</li>
+                                <li>...</li>
+                            </ul>
+                            <li><h3>BLOG</h3></li>
+                            <ul>
+                                <li>TISTORY</li>
+                                <li>GITHUB</li>
+                                <li>VLOG</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <img class="img-fluid rounded mx-auto d-block"  src="{% static 'single_pages/images/penguin.gif' %}" width="60%">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-light margin-for-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>PORTFOLIO</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card" data-toggle="modal" data-target="#1">
+                            <!--<img class="card-img-top" scr="{% static 'single_pages/images/...1' %}">-->
+                            <div class="card-body">
+                                <h5 class="card-title">포트폴리오1</h5>
+                                <p>포트폴리오1에 관한 설명</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card" data-toggle="modal" data-target="#2">
+                            <!--<img class="card-img-top" scr="{% static 'single_pages/images/...2' %}">-->
+                            <div class="card-body">
+                                <h5 class="card-title">포트폴리오2</h5>
+                                <p>포트폴리오2에 관한 설명</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card" data-toggle="modal" data-target="#3">
+                            <!--<img class="card-img-top" scr="{% static 'single_pages/images/...3' %}">-->
+                            <div class="card-body">
+                                <h5 class="card-title">포트폴리오3</h5>
+                                <p>포트폴리오3에 관한 설명</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="fixed-bottom">
+            {% include 'blog/footer.html' %}
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="...1ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h3>Portfolio1</h3><hr/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Image Or Video
+                    </div>
+                    <div class="col-lg-4">
+                        Content
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="2" tabindex="-1" role="dialog" aria-labelledby="...2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h3>Portfolio2</h3><hr/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Image Or Video
+                    </div>
+                    <div class="col-lg-4">
+                        Content
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="3" tabindex="-1" role="dialog" aria-labelledby="...3ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h3>Portfolio3</h3><hr/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Image Or Video
+                    </div>
+                    <div class="col-lg-4">
+                        Content
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+    </body>
 </html>
