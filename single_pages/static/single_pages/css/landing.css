@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
+body {
+    background: url('/static/single_pages/images/background-img.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+section {
+    margin-bottom: 150px;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+.card {
+    background-color: rgba(255,255,255,0.6)
+}
