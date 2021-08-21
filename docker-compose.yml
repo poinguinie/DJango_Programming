@@ -26,8 +26,6 @@ services:
       - static_volume:/usr/src/app/_static
       - media_volume:/usr/src/app/_media
       - ./:/usr/src/app/
-    expose:
-      - 8000
     ports:
       - 8000
     env_file:
