@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(poinguinie-django.shop www.poinguinie-django.shop)
+domains=(poinguinie-django.com www.poinguinie-django.com)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="" # Adding a valid address is strongly recommended
